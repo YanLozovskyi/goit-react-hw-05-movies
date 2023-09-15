@@ -1,4 +1,6 @@
+import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { PageLoader } from 'components/PageLoader/PageLoader';
 import styled from 'styled-components';
 
 const StyledLink = styled(NavLink)`
@@ -25,9 +27,9 @@ const Layout = () => {
         </nav>
       </header>
       <main>
-        <div>
+        <Suspense fallback={<PageLoader />}>
           <Outlet />
-        </div>
+        </Suspense>
       </main>
     </>
   );
