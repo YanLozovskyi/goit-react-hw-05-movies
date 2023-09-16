@@ -21,7 +21,6 @@ const Cast = () => {
         setIsLoading(true);
         const response = await TMDB_API.getMovieCastById(movieId, controller);
         setCast(response);
-        console.log(response);
         setError(false);
         setIsLoading(false);
       } catch (error) {
@@ -38,28 +37,30 @@ const Cast = () => {
     <>
       {cast && !isLoading && (
         <ul>
-          {cast?.map(
-            ({ profile_path, id, original_name, popularity, character }) => (
-              <li key={id}>
-                <img
-                  loading="lazy"
-                  width="250"
-                  height="360"
-                  src={
-                    profile_path
-                      ? `https://image.tmdb.org/t/p/w500/${profile_path}`
-                      : default_poster_path
-                  }
-                  alt={original_name}
-                />
-                <div>
-                  <h2>{original_name}</h2>
-                  <p>Character: {character}</p>
-                  <p>Popularity: {popularity}</p>
-                </div>
-              </li>
-            )
-          )}
+          {cast
+            .slice(0, 32)
+            ?.map(
+              ({ profile_path, id, original_name, popularity, character }) => (
+                <li key={id}>
+                  <img
+                    loading="lazy"
+                    width="250"
+                    height="360"
+                    src={
+                      profile_path
+                        ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                        : default_poster_path
+                    }
+                    alt={original_name}
+                  />
+                  <div>
+                    <h2>{original_name}</h2>
+                    <p>Character: {character}</p>
+                    <p>Popularity: {popularity}</p>
+                  </div>
+                </li>
+              )
+            )}
         </ul>
       )}
       {isLoading && <MediaLoader />}
