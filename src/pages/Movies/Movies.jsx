@@ -1,4 +1,5 @@
 import { TMDB_API } from 'api/FetchMovieApi';
+import Button from 'components/Button/Button';
 import { MediaLoader } from 'components/MediaLoader/MediaLoader';
 import MovieList from 'components/MovieList/MovieList';
 import Notifications from 'components/Notifications/Notifications';
@@ -10,7 +11,9 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [page] = useState(1);
+  const [isLoadMore, setIsLoadMore] = useState(false);
+  const [page, setPage] = useState(1);
+  const [isVisible, setIsVisible] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query') ?? '';
@@ -20,6 +23,7 @@ const Movies = () => {
 
     if (trimmedValue === '') return setSearchParams({});
     setSearchParams({ query: value });
+    setPage(1);
   };
 
   useEffect(() => {
@@ -27,6 +31,7 @@ const Movies = () => {
     const controller = new AbortController();
 
     const getTrendMovies = async () => {
+      setIsVisible(!!query);
       setIsLoading(true);
       try {
         const response = await TMDB_API.getTrendMoviesByParam(
@@ -52,30 +57,41 @@ const Movies = () => {
   useEffect(() => {
     if (!query) return;
 
-    setIsLoading(true);
+    if (page === 1) {
+      setMovies([]);
+      setIsLoading(true);
+    }
+
     const controller = new AbortController();
 
     const searchMoviesByQuery = async () => {
+      setIsLoadMore(true);
       try {
-        const response = await TMDB_API.searchMoviesByQuery(
-          query,
-          page,
-          controller
-        );
-        setMovies(response.results);
+        const {
+          total_pages,
+          results,
+          page: currentPage,
+        } = await TMDB_API.searchMoviesByQuery(query, page, controller);
+        setMovies(prev => [...prev, ...results]);
+        setIsVisible(currentPage < total_pages);
         setError(false);
+        setIsLoadMore(false);
         setIsLoading(false);
       } catch (error) {
         if (error.message === 'canceled') return;
 
         setError(error.message);
-        setIsLoading(false);
+        setIsLoadMore(false);
       }
     };
     searchMoviesByQuery();
 
     return () => controller.abort();
   }, [page, query]);
+
+  const handleLoadMore = () => {
+    setPage(page + 1);
+  };
 
   return (
     <>
@@ -100,6 +116,13 @@ const Movies = () => {
       )}
       {isLoading && <MediaLoader />}
       {!isLoading && <MovieList movies={movies} />}
+      {isVisible && query && (
+        <Button
+          onClick={handleLoadMore}
+          text={isLoadMore ? 'Loading...' : 'Load More'}
+          disabled={isLoadMore}
+        ></Button>
+      )}
     </>
   );
 };
