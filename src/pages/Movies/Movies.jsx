@@ -45,6 +45,8 @@ const Movies = () => {
       }
     };
     getTrendMovies();
+
+    return () => controller.abort();
   }, [query]);
 
   useEffect(() => {
@@ -71,6 +73,8 @@ const Movies = () => {
       }
     };
     searchMoviesByQuery();
+
+    return () => controller.abort();
   }, [page, query]);
 
   return (

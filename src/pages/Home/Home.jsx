@@ -11,8 +11,8 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
     const getTrendMovies = async () => {
-      const controller = new AbortController();
       setIsLoading(true);
       try {
         const response = await TMDB_API.getTrendMoviesByParam(
@@ -32,6 +32,8 @@ const Home = () => {
       }
     };
     getTrendMovies();
+
+    return () => controller.abort();
   }, []);
 
   return (

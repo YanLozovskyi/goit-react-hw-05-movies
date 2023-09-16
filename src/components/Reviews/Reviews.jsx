@@ -35,6 +35,8 @@ const Reviews = () => {
       }
     };
     getMovieReviews();
+
+    return () => controller.abort();
   }, [movieId]);
 
   return (

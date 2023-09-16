@@ -31,6 +31,8 @@ const Cast = () => {
       }
     };
     getMovieCast();
+
+    return () => controller.abort();
   }, [movieId]);
 
   return (
