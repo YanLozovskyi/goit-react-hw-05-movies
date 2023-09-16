@@ -15,7 +15,10 @@ const Home = () => {
       const controller = new AbortController();
       setIsLoading(true);
       try {
-        const response = await TMDB_API.getTrendMovieByParam('day', controller);
+        const response = await TMDB_API.getTrendMoviesByParam(
+          'day',
+          controller
+        );
 
         setMovies(response);
 

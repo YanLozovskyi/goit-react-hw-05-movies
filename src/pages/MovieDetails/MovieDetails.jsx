@@ -14,7 +14,6 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
-  // HTTP
 
   useEffect(() => {
     if (!movieId) return;
@@ -28,7 +27,6 @@ const MovieDetails = () => {
           movieId,
           controller
         );
-        console.log(response);
         setMovie(response);
         setError(false);
         setIsLoading(false);
