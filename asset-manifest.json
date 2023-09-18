@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/goit-react-hw-05-movies/static/css/main.7cda0caf.css",
-    "main.js": "/goit-react-hw-05-movies/static/js/main.b380a8ef.js",
+    "main.js": "/goit-react-hw-05-movies/static/js/main.0b9ebf76.js",
     "static/js/544.8ce7522f.chunk.js": "/goit-react-hw-05-movies/static/js/544.8ce7522f.chunk.js",
     "static/js/278.c3a92a14.chunk.js": "/goit-react-hw-05-movies/static/js/278.c3a92a14.chunk.js",
     "static/js/961.15fb1fec.chunk.js": "/goit-react-hw-05-movies/static/js/961.15fb1fec.chunk.js",
     "static/js/60.767b46bb.chunk.js": "/goit-react-hw-05-movies/static/js/60.767b46bb.chunk.js",
     "static/media/default_poster_path.jpg": "/goit-react-hw-05-movies/static/media/default_poster_path.c2a1de32b81aca223e04.jpg",
     "static/media/default_vertical_poster_path.jpg": "/goit-react-hw-05-movies/static/media/default_vertical_poster_path.8f98846b43f64994418d.jpg",
-    "static/media/bg-image.avif": "/goit-react-hw-05-movies/static/media/bg-image.e7a7c4ad4f3e1c58429e.avif",
+    "static/media/stars-sky.jpg": "/goit-react-hw-05-movies/static/media/stars-sky.495f1bb9e372479007df.jpg",
     "index.html": "/goit-react-hw-05-movies/index.html",
     "main.7cda0caf.css.map": "/goit-react-hw-05-movies/static/css/main.7cda0caf.css.map",
-    "main.b380a8ef.js.map": "/goit-react-hw-05-movies/static/js/main.b380a8ef.js.map",
+    "main.0b9ebf76.js.map": "/goit-react-hw-05-movies/static/js/main.0b9ebf76.js.map",
     "544.8ce7522f.chunk.js.map": "/goit-react-hw-05-movies/static/js/544.8ce7522f.chunk.js.map",
     "278.c3a92a14.chunk.js.map": "/goit-react-hw-05-movies/static/js/278.c3a92a14.chunk.js.map",
     "961.15fb1fec.chunk.js.map": "/goit-react-hw-05-movies/static/js/961.15fb1fec.chunk.js.map",
@@ -19,6 +19,6 @@
   },
   "entrypoints": [
     "static/css/main.7cda0caf.css",
-    "static/js/main.b380a8ef.js"
+    "static/js/main.0b9ebf76.js"
   ]
 }
