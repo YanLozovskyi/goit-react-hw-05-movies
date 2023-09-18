@@ -1,21 +1,37 @@
-import PropTypes from 'prop-types';
-import css from './Button.module.css';
+import styled from 'styled-components';
 
-const Button = ({ onClick, text, disabled }) => (
-  <div className={css.wrapper}>
-    <button
-      className={css.Button}
-      onClick={onClick}
-      type="button"
-      disabled={disabled}
-    >
-      {text}
-    </button>
-  </div>
-);
+export const Button = styled.button`
+  display: block;
 
-export default Button;
+  margin-top: ${({ theme }) => theme.spacing(10)};
+  margin-bottom: ${({ $marginBottom }) => (!$marginBottom ? 0 : $marginBottom)};
+  margin-left: ${({ $marginLeft }) => (!$marginLeft ? '0' : $marginLeft)};
+  margin-right: auto;
 
-Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-};
+  padding: 15px 30px;
+  border-radius: ${({ theme }) => theme.spacing(5)};
+  background-color: ${({ theme }) => theme.colors.backgroundColorDark};
+
+  color: ${({ theme }) => theme.colors.textColorLight};
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: ${({ theme }) => theme.shadows.small};
+
+  transition: box-shadow ${({ theme }) => theme.animation.cubicBezier};
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadows.main};
+  }
+`;
+
+// export const Button = ({ onClick, text, disabled }) => (
+//   <StyledButton
+//     onClick={onClick}
+//     type="button"
+//     disabled={disabled}
+//     $marginLeft={'auto'}
+//   >
+//     {text}
+//   </StyledButton>
+// );

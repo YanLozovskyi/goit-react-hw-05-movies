@@ -1,5 +1,21 @@
 import PropTypes from 'prop-types';
-import default_poster_path from '../../img/default_poster_path.jpg';
+import default_poster_path from '../../styles/img/default_poster_path.jpg';
+import {
+  MovieWrapper,
+  ImageWrapper,
+  Image,
+  DescriptionWrapper,
+  Title,
+  InfoWrapper,
+  ListOne,
+  ListTwo,
+  ItemOne,
+  ItemTwo,
+  Span,
+  AboutWrapper,
+  SubTitle,
+  Text,
+} from './MovieDetailsItem.styled';
 
 export const MovieDetailsItem = ({
   movie: {
@@ -15,9 +31,9 @@ export const MovieDetailsItem = ({
 }) => {
   const allGenres = genres.map(({ name }) => name).join(', ');
   return (
-    <div>
-      <div>
-        <img
+    <MovieWrapper>
+      <ImageWrapper>
+        <Image
           loading="lazy"
           width="704"
           height="400"
@@ -28,35 +44,35 @@ export const MovieDetailsItem = ({
           }
           alt={original_title}
         />
-      </div>
-      <div>
-        <h1>{original_title}</h1>
-        <div>
-          <ul>
-            <li>Release date</li>
-            <li>Vote / Votes</li>
-          </ul>
-          <ul>
-            <li>{release_date}</li>
-            <li>
-              <span>{vote_average}</span> / <span>{vote_count}</span>
-            </li>
-          </ul>
-          <ul>
-            <li>Popularity</li>
-            <li>Genre</li>
-          </ul>
-          <ul>
-            <li>{popularity}</li>
-            <li>{allGenres}</li>
-          </ul>
-        </div>
-        <div>
-          <p>About</p>
-          <p>{overview}</p>
-        </div>
-      </div>
-    </div>
+      </ImageWrapper>
+      <DescriptionWrapper>
+        <Title>{original_title}</Title>
+        <InfoWrapper>
+          <ListOne>
+            <ItemOne>Release date</ItemOne>
+            <ItemOne>Vote / Votes</ItemOne>
+          </ListOne>
+          <ListTwo>
+            <ItemTwo>{release_date}</ItemTwo>
+            <ItemTwo>
+              <Span>{vote_average}</Span> / <Span>{vote_count}</Span>
+            </ItemTwo>
+          </ListTwo>
+          <ListOne>
+            <ItemOne>Popularity</ItemOne>
+            <ItemOne>Genre</ItemOne>
+          </ListOne>
+          <ListTwo>
+            <ItemTwo>{popularity}</ItemTwo>
+            <ItemTwo>{allGenres}</ItemTwo>
+          </ListTwo>
+        </InfoWrapper>
+        <AboutWrapper>
+          <SubTitle>About</SubTitle>
+          <Text>{overview}</Text>
+        </AboutWrapper>
+      </DescriptionWrapper>
+    </MovieWrapper>
   );
 };
 

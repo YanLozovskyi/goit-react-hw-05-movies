@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TMDB_API } from 'api/FetchMovieApi';
 
-import { MediaLoader } from 'components/MediaLoader/MediaLoader';
-import Notifications from 'components/Notifications/Notifications';
+import { MediaLoader, Notifications } from 'components';
 import MovieList from 'components/MovieList/MovieList';
 
 const Home = () => {

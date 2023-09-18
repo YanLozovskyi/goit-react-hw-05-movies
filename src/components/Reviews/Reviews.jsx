@@ -1,10 +1,9 @@
-import { TMDB_API } from 'api/FetchMovieApi';
-import default_poster_path from '../../img/default_poster_path.jpg';
-import { MediaLoader } from 'components/MediaLoader/MediaLoader';
-import Notifications from 'components/Notifications/Notifications';
 import { useEffect, useState } from 'react';
-
-const { useParams } = require('react-router-dom');
+import { useParams } from 'react-router-dom';
+import default_poster_path from '../../styles/img/default_poster_path.jpg';
+import { MediaLoader, Notifications } from 'components';
+import { List, Item, Image, UserInfo, Comment, Date } from './Reviews.styled';
+import { TMDB_API } from 'api/FetchMovieApi';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -42,7 +41,7 @@ const Reviews = () => {
   return (
     <>
       {reviews && !isLoading && (
-        <ul>
+        <List>
           {reviews.map(
             ({
               content,
@@ -50,9 +49,9 @@ const Reviews = () => {
               updated_at,
               author_details: { rating, name, avatar_path },
             }) => (
-              <li key={id}>
-                <div>
-                  <img
+              <Item key={id}>
+                <UserInfo>
+                  <Image
                     src={
                       avatar_path
                         ? `https://image.tmdb.org/t/p/w500/${avatar_path}`
@@ -64,15 +63,16 @@ const Reviews = () => {
                     <p>Author: {name}</p>
                     <p>Rating: {rating}</p>
                   </div>
-                </div>
+                </UserInfo>
+
                 <div>
-                  <p>{content}</p>
-                  <p>{updated_at}</p>
+                  <Comment>{content}</Comment>
+                  <Date>{updated_at}</Date>
                 </div>
-              </li>
+              </Item>
             )
           )}
-        </ul>
+        </List>
       )}
       {isLoading && <MediaLoader />}
       {!error && reviews?.length === 0 && (

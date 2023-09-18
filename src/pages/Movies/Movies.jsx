@@ -1,9 +1,6 @@
 import { TMDB_API } from 'api/FetchMovieApi';
-import Button from 'components/Button/Button';
-import { MediaLoader } from 'components/MediaLoader/MediaLoader';
 import MovieList from 'components/MovieList/MovieList';
-import Notifications from 'components/Notifications/Notifications';
-import { SearchBar } from 'components/SearchBar/SearchBar';
+import { SearchBar, Notifications, MediaLoader, Button } from 'components';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -119,9 +116,11 @@ const Movies = () => {
       {isVisible && query && (
         <Button
           onClick={handleLoadMore}
-          text={isLoadMore ? 'Loading...' : 'Load More'}
           disabled={isLoadMore}
-        ></Button>
+          $marginLeft={'auto'}
+        >
+          {isLoadMore ? 'Loading...' : 'Load More'}
+        </Button>
       )}
     </>
   );

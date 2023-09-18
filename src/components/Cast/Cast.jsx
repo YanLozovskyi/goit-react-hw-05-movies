@@ -1,9 +1,10 @@
 import { TMDB_API } from 'api/FetchMovieApi';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import default_poster_path from '../../img/default_poster_path.jpg';
-import { MediaLoader } from 'components/MediaLoader/MediaLoader';
-import Notifications from 'components/Notifications/Notifications';
+import default_poster_path from '../../styles/img/default_vertical_poster_path.jpg';
+import { MediaLoader, Notifications } from 'components';
+import { List, Item, Image, InfoWrap, Title, Text } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -38,32 +39,38 @@ const Cast = () => {
   return (
     <>
       {cast && !isLoading && (
-        <ul>
+        <List>
           {cast
             .slice(0, 32)
             ?.map(
               ({ profile_path, id, original_name, popularity, character }) => (
-                <li key={id}>
-                  <img
-                    loading="lazy"
-                    width="250"
-                    height="360"
-                    src={
-                      profile_path
-                        ? `https://image.tmdb.org/t/p/w500/${profile_path}`
-                        : default_poster_path
-                    }
-                    alt={original_name}
-                  />
-                  <div>
-                    <h2>{original_name}</h2>
-                    <p>Character: {character}</p>
-                    <p>Popularity: {popularity}</p>
-                  </div>
-                </li>
+                <Item key={id}>
+                  <Link
+                    to={`https://www.google.com/search?q=${original_name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      loading="lazy"
+                      width="250"
+                      height="360"
+                      src={
+                        profile_path
+                          ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                          : default_poster_path
+                      }
+                      alt={original_name}
+                    />
+                    <InfoWrap>
+                      <Title>{original_name}</Title>
+                      <Text>Character: {character}</Text>
+                      <Text>Popularity: {popularity}</Text>
+                    </InfoWrap>
+                  </Link>
+                </Item>
               )
             )}
-        </ul>
+        </List>
       )}
       {isLoading && <MediaLoader />}
       {!error && cast?.length === 0 && (

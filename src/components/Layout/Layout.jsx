@@ -1,36 +1,39 @@
+import { PageLoader, Header, Footer, Container, Section } from 'components';
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import { PageLoader } from 'components/PageLoader/PageLoader';
-import styled from 'styled-components';
-
-const StyledLink = styled(NavLink)`
-  color: black;
-
-  &.active {
-    color: orange;
-  }
-`;
+import { Outlet } from 'react-router-dom';
+import { Wrap, StyledLink, Nav, Logo } from './Layout.styled';
 
 const Layout = () => {
   return (
     <>
-      <header>
-        <nav>
-          <ul>
-            <li>
+      <Wrap>
+        <Container>
+          <Header>
+            <Logo to={'/'}>tmdb</Logo>
+            <Nav>
               <StyledLink to="/">Home</StyledLink>
-            </li>
-            <li>
               <StyledLink to="/movies">Movies</StyledLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main>
-        <Suspense fallback={<PageLoader />}>
-          <Outlet />
-        </Suspense>
-      </main>
+            </Nav>
+          </Header>
+        </Container>
+        <main>
+          <Container>
+            <Section>
+              <Suspense fallback={<PageLoader />}>
+                <Outlet />
+              </Suspense>
+            </Section>
+          </Container>
+        </main>
+        <Container>
+          <Footer>
+            <Nav>
+              <StyledLink to="/">Home</StyledLink>
+              <StyledLink to="/movies">Movies</StyledLink>
+            </Nav>
+          </Footer>
+        </Container>
+      </Wrap>
     </>
   );
 };

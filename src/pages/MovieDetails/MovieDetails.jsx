@@ -1,10 +1,13 @@
 import { TMDB_API } from 'api/FetchMovieApi';
-import { PageLoader } from 'components/PageLoader/PageLoader';
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
-import { MovieDetailsItem } from 'components/MovieDetailsItem/MovieDetailsItem';
-import { MediaLoader } from 'components/MediaLoader/MediaLoader';
-import Notifications from 'components/Notifications/Notifications';
+import {
+  MovieDetailsItem,
+  MediaLoader,
+  PageLoader,
+  Notifications,
+  Button,
+} from 'components';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState();
@@ -43,7 +46,7 @@ const MovieDetails = () => {
   return (
     <>
       <Link to={backLinkLocationRef.current}>
-        <button>back</button>
+        <Button $marginBottom={'20px'}>{'Back'}</Button>
       </Link>
       {error && (
         <Notifications
@@ -55,14 +58,14 @@ const MovieDetails = () => {
       {movie && !isLoading && <MovieDetailsItem movie={movie} />}
       {isLoading && <MediaLoader />}
       {!error && !isLoading && (
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
+        <div style={{ display: 'flex', gap: '30px', marginBottom: '30px' }}>
+          <Link to="cast">
+            <Button>Cast</Button>
+          </Link>
+          <Link to="reviews">
+            <Button>Reviews</Button>
+          </Link>
+        </div>
       )}
       <Suspense fallback={<PageLoader />}>
         <Outlet />
