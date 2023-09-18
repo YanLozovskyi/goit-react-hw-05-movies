@@ -114,7 +114,7 @@ export const ItemTwo = styled.li`
 `;
 
 export const Span = styled.span`
-  background: ${({ theme: { colors } }) => colors.textColorDark};
+  background: ${({ theme }) => theme.colors.linearBackgroundGradient};
   border-radius: 5px;
   padding: 1px 8px;
   max-width: 36px;

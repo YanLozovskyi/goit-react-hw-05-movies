@@ -52,7 +52,7 @@ export const StyledLink = styled(NavLink)`
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.main};
     color: ${({ theme }) => theme.colors.textColorDark};
-    background: linear-gradient(to right, #3ed3ac 0%, #37b5e1 100%);
+    background: ${({ theme }) => theme.colors.linearGradient};
     background-origin: border-box;
   }
 `;

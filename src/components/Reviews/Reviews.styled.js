@@ -6,7 +6,7 @@ export const List = styled.ul`
   gap: 35px;
   padding: 30px;
   border-radius: 10px;
-  background-color: ${({ theme: { colors } }) => colors.backgroundColorDark};
+  background: ${({ theme }) => theme.colors.linearBackgroundGradient};
 `;
 
 export const Item = styled.li``;

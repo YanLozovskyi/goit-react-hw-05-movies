@@ -4,5 +4,5 @@ export const Footer = styled.footer`
   align-items: center;
   padding-left: 50px;
   height: 68px;
-  background-color: ${({ theme }) => theme.colors.backgroundColorDark};
+  background: ${({ theme }) => theme.colors.linearBackgroundGradient};
 `;

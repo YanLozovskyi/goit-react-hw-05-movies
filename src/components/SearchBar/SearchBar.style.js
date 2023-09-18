@@ -39,7 +39,7 @@ export const Button = styled.button`
   width: 75px;
   height: 40px;
   border: 0;
-  background-color: ${({ theme }) => theme.colors.backgroundColorDark};
+  background: ${({ theme }) => theme.colors.linearBackgroundGradient};
   cursor: pointer;
   outline: none;
   transition: background-color ${({ theme }) => theme.animation.cubicBezier};

@@ -10,7 +10,7 @@ export const Button = styled.button`
 
   padding: 15px 30px;
   border-radius: ${({ theme }) => theme.spacing(5)};
-  background-color: ${({ theme }) => theme.colors.backgroundColorDark};
+  background: ${({ theme }) => theme.colors.linearBackgroundGradient};
 
   color: ${({ theme }) => theme.colors.textColorLight};
   text-transform: uppercase;
