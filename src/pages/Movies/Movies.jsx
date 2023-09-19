@@ -1,4 +1,6 @@
 import { TMDB_API } from 'api/FetchMovieApi';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import MovieList from 'components/MovieList/MovieList';
 import { SearchBar, Notifications, MediaLoader, Button } from 'components';
 import { useEffect, useState } from 'react';
@@ -12,13 +14,27 @@ const Movies = () => {
   const [page, setPage] = useState(1);
   const [isVisible, setIsVisible] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isQueryEmptyNotified, setIsQueryEmptyNotified] = useState(true);
 
   const query = searchParams.get('query') ?? '';
-
+  console.log('query:', query);
   const handleSubmit = value => {
     const trimmedValue = value.trim();
 
-    if (trimmedValue === '') return setSearchParams({});
+    if (trimmedValue === '') {
+      setSearchParams({});
+      if (!isQueryEmptyNotified) {
+        toast.info("Your query is empty. We'll show you this week's trends.");
+        setIsQueryEmptyNotified(true);
+      } else {
+        toast.info('Please enter your request');
+      }
+      return;
+    }
+    if (trimmedValue === query)
+      return toast.info(
+        `You've already entered: ${query}. Enter another request`
+      );
     setSearchParams({ query: value });
     setPage(1);
   };
@@ -66,6 +82,7 @@ const Movies = () => {
       try {
         const {
           total_pages,
+          total_results,
           results,
           page: currentPage,
         } = await TMDB_API.searchMoviesByQuery(query, page, controller);
@@ -74,6 +91,10 @@ const Movies = () => {
         setError(false);
         setIsLoadMore(false);
         setIsLoading(false);
+        if (total_results > 0 && page === 1) {
+          toast.info(`Found ${total_results} movies`);
+          setIsQueryEmptyNotified(false);
+        }
       } catch (error) {
         if (error.message === 'canceled') return;
 
@@ -92,6 +113,7 @@ const Movies = () => {
 
   return (
     <>
+      <ToastContainer position="top-right" autoClose={3000} theme="dark" />
       <SearchBar onSubmit={handleSubmit} />
       {!isLoading && !error && !query && (
         <Notifications message={'Weekly trends'} />

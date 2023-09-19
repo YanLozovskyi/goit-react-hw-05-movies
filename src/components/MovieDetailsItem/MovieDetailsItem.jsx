@@ -78,7 +78,7 @@ export const MovieDetailsItem = ({
 
 MovieDetailsItem.propTypes = {
   movie: PropTypes.shape({
-    backdrop_path: PropTypes.string.isRequired,
+    backdrop_path: PropTypes.string,
     original_title: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
     vote_average: PropTypes.number.isRequired,
