@@ -33,3 +33,12 @@ export const Comment = styled.p`
 export const Date = styled.p`
   color: ${({ theme: { colors } }) => colors.yellow};
 `;
+
+export const ExpandButton = styled.button`
+  padding-left: 5px;
+  color: #007bff;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;

@@ -2,7 +2,15 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import default_poster_path from '../../styles/img/default_poster_path.jpg';
 import { MediaLoader, Notifications } from 'components';
-import { List, Item, Image, UserInfo, Comment, Date } from './Reviews.styled';
+import {
+  List,
+  Item,
+  Image,
+  UserInfo,
+  Comment,
+  Date,
+  ExpandButton,
+} from './Reviews.styled';
 import { TMDB_API } from 'api/FetchMovieApi';
 
 const Reviews = () => {
@@ -11,6 +19,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [expandedComments, setExpandedComments] = useState({});
 
   useEffect(() => {
     if (!movieId) return;
@@ -38,6 +47,13 @@ const Reviews = () => {
     return () => controller.abort();
   }, [movieId]);
 
+  const toggleCommentExpansion = commentId => {
+    setExpandedComments(prevExpandedComments => ({
+      ...prevExpandedComments,
+      [commentId]: !prevExpandedComments[commentId],
+    }));
+  };
+  console.log(expandedComments);
   return (
     <>
       {reviews && !isLoading && (
@@ -66,7 +82,14 @@ const Reviews = () => {
                 </UserInfo>
 
                 <div>
-                  <Comment>{content}</Comment>
+                  <Comment>
+                    {content.slice(0, expandedComments[id] ? undefined : 200)}
+                    {content.length > 200 && (
+                      <ExpandButton onClick={() => toggleCommentExpansion(id)}>
+                        {expandedComments[id] ? 'Show Less' : 'Show More'}
+                      </ExpandButton>
+                    )}
+                  </Comment>
                   <Date>{updated_at}</Date>
                 </div>
               </Item>
