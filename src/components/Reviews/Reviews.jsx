@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import default_poster_path from '../../styles/img/default_poster_path.jpg';
-import { MediaLoader, Notifications } from 'components';
+import { SkeletonReviews, Notifications } from 'components';
 import {
   List,
   Item,
@@ -98,7 +98,7 @@ const Reviews = () => {
           )}
         </List>
       )}
-      {isLoading && <MediaLoader />}
+      {isLoading && <SkeletonReviews />}
       {!error && reviews?.length === 0 && (
         <Notifications
           message={'Sorry, There are no reviews in this Movie...'}

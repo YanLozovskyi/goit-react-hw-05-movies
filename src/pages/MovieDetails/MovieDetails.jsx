@@ -3,10 +3,10 @@ import { Suspense, useState, useEffect, useRef } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import {
   MovieDetailsItem,
-  MediaLoader,
   PageLoader,
   Notifications,
   Button,
+  SkeletonMovieDetails,
 } from 'components';
 
 const MovieDetails = () => {
@@ -56,7 +56,7 @@ const MovieDetails = () => {
         />
       )}
       {movie && !isLoading && <MovieDetailsItem movie={movie} />}
-      {isLoading && <MediaLoader />}
+      {isLoading && <SkeletonMovieDetails />}
       {!error && !isLoading && (
         <div style={{ display: 'flex', gap: '30px', marginBottom: '30px' }}>
           <Link to="cast">

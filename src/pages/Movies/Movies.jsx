@@ -2,7 +2,12 @@ import { TMDB_API } from 'api/FetchMovieApi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MovieList from 'components/MovieList/MovieList';
-import { SearchBar, Notifications, MediaLoader, Button } from 'components';
+import {
+  SearchBar,
+  Notifications,
+  Button,
+  SkeletonMovieCard,
+} from 'components';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -133,7 +138,7 @@ const Movies = () => {
           }
         />
       )}
-      {isLoading && <MediaLoader />}
+      {isLoading && <SkeletonMovieCard />}
       {!isLoading && <MovieList movies={movies} />}
       {isVisible && query && (
         <Button

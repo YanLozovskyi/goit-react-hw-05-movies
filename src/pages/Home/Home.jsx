@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TMDB_API } from 'api/FetchMovieApi';
 
-import { MediaLoader, Notifications } from 'components';
+import { Notifications, SkeletonCard } from 'components';
 import MovieList from 'components/MovieList/MovieList';
 
 const Home = () => {
@@ -45,7 +45,7 @@ const Home = () => {
           }
         />
       )}
-      {isLoading && <MediaLoader />}
+      {isLoading && <SkeletonCard />}
       {!isLoading && <MovieList movies={movies} />}
     </>
   );

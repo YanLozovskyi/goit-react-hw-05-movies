@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import default_poster_path from '../../styles/img/default_vertical_poster_path.jpg';
-import { MediaLoader, Notifications } from 'components';
+import { Notifications, SkeletonCard } from 'components';
 import { List, Item, Image, InfoWrap, Title, Text } from './Cast.styled';
 
 const Cast = () => {
@@ -72,7 +72,7 @@ const Cast = () => {
             )}
         </List>
       )}
-      {isLoading && <MediaLoader />}
+      {isLoading && <SkeletonCard />}
       {!error && cast?.length === 0 && (
         <Notifications message={'Sorry, There are no cast in this Movie...'} />
       )}

@@ -13,3 +13,4 @@ export * from 'components/MovieList/MovieList';
 export * from 'components/MovieDetailsItem/MovieDetailsItem';
 export * from 'components/Notifications/Notifications';
 export * from 'components/SearchBar/SearchBar';
+export * from 'components/Skeletons';
