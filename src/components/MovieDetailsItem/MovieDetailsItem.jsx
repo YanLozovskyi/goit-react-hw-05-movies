@@ -16,6 +16,7 @@ import {
   SubTitle,
   Text,
 } from './MovieDetailsItem.styled';
+import { formatDate } from 'helpers';
 
 export const MovieDetailsItem = ({
   movie: {
@@ -53,7 +54,7 @@ export const MovieDetailsItem = ({
             <ItemOne>Vote / Votes</ItemOne>
           </ListOne>
           <ListTwo>
-            <ItemTwo>{release_date}</ItemTwo>
+            <ItemTwo>{formatDate(release_date, 'dd MMMM yyyy')}</ItemTwo>
             <ItemTwo>
               <Span>{vote_average}</Span> / <Span>{vote_count}</Span>
             </ItemTwo>
@@ -63,7 +64,7 @@ export const MovieDetailsItem = ({
             <ItemOne>Genre</ItemOne>
           </ListOne>
           <ListTwo>
-            <ItemTwo>{popularity}</ItemTwo>
+            <ItemTwo>{parseInt(popularity, 10)}</ItemTwo>
             <ItemTwo>{allGenres}</ItemTwo>
           </ListTwo>
         </InfoWrapper>

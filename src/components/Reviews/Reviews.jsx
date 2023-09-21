@@ -11,6 +11,7 @@ import {
   Date,
   ExpandButton,
 } from './Reviews.styled';
+import { formatDate } from 'helpers';
 import { TMDB_API } from 'api/FetchMovieApi';
 
 const Reviews = () => {
@@ -53,7 +54,7 @@ const Reviews = () => {
       [commentId]: !prevExpandedComments[commentId],
     }));
   };
-  console.log(expandedComments);
+
   return (
     <>
       {reviews && !isLoading && (
@@ -90,7 +91,7 @@ const Reviews = () => {
                       </ExpandButton>
                     )}
                   </Comment>
-                  <Date>{updated_at}</Date>
+                  <Date>{formatDate(updated_at)}</Date>
                 </div>
               </Item>
             )

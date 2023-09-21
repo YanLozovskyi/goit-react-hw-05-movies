@@ -17,7 +17,7 @@ const Movies = () => {
   const [isQueryEmptyNotified, setIsQueryEmptyNotified] = useState(true);
 
   const query = searchParams.get('query') ?? '';
-  console.log('query:', query);
+
   const handleSubmit = value => {
     const trimmedValue = value.trim();
 

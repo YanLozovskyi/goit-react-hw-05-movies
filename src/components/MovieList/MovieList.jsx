@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import default_poster_path from '../../styles/img/default_poster_path.jpg';
+import { formatDate } from 'helpers';
 import {
   List,
   Item,
@@ -29,7 +30,9 @@ const MovieList = ({ movies }) => {
                 />
                 <InfoWrap>
                   <Title>{original_title ?? name}</Title>
-                  <DateText>{release_date}</DateText>
+                  <DateText>
+                    {formatDate(release_date, 'dd MMMM yyyy')}
+                  </DateText>
                 </InfoWrap>
               </Link>
             </Item>
