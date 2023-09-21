@@ -8,7 +8,6 @@ export * from 'components/Cast/Cast';
 export * from 'components/Reviews/Reviews';
 export * from 'components/Button/Button';
 export * from 'components/PageLoader/PageLoader';
-export * from 'components/MediaLoader/MediaLoader';
 export * from 'components/MovieList/MovieList';
 export * from 'components/MovieDetailsItem/MovieDetailsItem';
 export * from 'components/Notifications/Notifications';

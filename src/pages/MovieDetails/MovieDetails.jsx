@@ -1,9 +1,8 @@
 import { TMDB_API } from 'api/FetchMovieApi';
-import { Suspense, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import {
   MovieDetailsItem,
-  PageLoader,
   Notifications,
   Button,
   SkeletonMovieDetails,
@@ -67,9 +66,7 @@ const MovieDetails = () => {
           </Link>
         </div>
       )}
-      <Suspense fallback={<PageLoader />}>
-        <Outlet />
-      </Suspense>
+      <Outlet />
     </>
   );
 };
